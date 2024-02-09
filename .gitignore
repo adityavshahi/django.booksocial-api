@@ -1,0 +1,5 @@
+/myenv
+/db.sqlite3
+/booksocial_project/__pycache__
+/booksocial_api/__pycache__
+/booksocial_api/migrations/__pycache__

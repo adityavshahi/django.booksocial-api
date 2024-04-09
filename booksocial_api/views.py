@@ -27,6 +27,19 @@ class SayHello(APIView):
 
 class TestViewSet(viewsets.ViewSet):
     """Testing viewset functionality"""
+    serializer_class = serializers.ViewsetSerializer
     def list(self,request):
         test_parameters = ['1',2,3.0]
         return Response({'message': 'Test ViewSet successful','test_parameters': test_parameters})
+    
+
+    def create(self,request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            first_name = serializer.validated_data.get('first_name')
+            last_name = serializer.validated_data.get('last_name')
+            age = serializer.validated_data.get('age')
+            messsage = f'Hi {first_name} {last_name}. You are {age} years old.'
+            return Response({"message": messsage})
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)

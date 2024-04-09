@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
 
 from booksocial_api import serializers
 
@@ -22,3 +23,10 @@ class SayHello(APIView):
             return Response({"message": message})
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        
+
+class TestViewSet(viewsets.ViewSet):
+    """Testing viewset functionality"""
+    def list(self,request):
+        test_parameters = ['1',2,3.0]
+        return Response({'message': 'Test ViewSet successful','test_parameters': test_parameters})

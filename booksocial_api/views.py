@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework import viewsets
 
 from booksocial_api import serializers
+from booksocial_api import models
 
 
 class HealthCheckView(APIView):
@@ -43,3 +44,9 @@ class TestViewSet(viewsets.ViewSet):
             return Response({"message": messsage})
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()

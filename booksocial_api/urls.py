@@ -9,6 +9,7 @@ router.register('profile-viewset',views.UserProfileViewSet)
 
 urlpatterns = [
     path('health_check/', views.HealthCheckView.as_view()),
+    path('login/',views.UserLoginView.as_view()),
     path('sayhello/',views.SayHello.as_view()),
     path('',include(router.urls))
 ]
